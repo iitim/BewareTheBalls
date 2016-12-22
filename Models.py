@@ -23,7 +23,7 @@ class Bar(Model):
     def __init__(self, world, major_var, direction):
         self.direction = direction
         self.major_var = major_var
-        self.minor_var = 500
+        self.minor_var = 400
         
         if self.direction == Bar.DIR_VERTICAL :
             super().__init__(world, self.major_var, self.minor_var)
@@ -64,11 +64,9 @@ class Bar(Model):
 class Ball(Model) :
     def __init__(self, world, x, y):
         super().__init__(world, x, y)
-        self.vx = randint(1, 3)
-        self.vy = randint(1, 3)
         self.out = False
-        self.dirx = self.random_dir()
-        self.diry = self.random_dir()
+        self.vx = self.random_dir() * randint(1, 3)
+        self.vy = self.random_dir() * randint(1, 3)
 
     def random_dir(self) :
         a = randint(0,2)
