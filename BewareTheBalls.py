@@ -56,12 +56,10 @@ class BewareTheBalls(arcade.Window):
                 each_ball_sprite.draw()
             for each_bar_sprite in  self.bar_sprite :
                 each_bar_sprite.draw()
-
             arcade.draw_text(str(self.world.timer_thread.timer),
                              self.width - 30, self.height - 30,
                              arcade.color.RED, 20)
         
- 
     def animate(self, delta):
         if not self.world.game_over :
             self.add_ball_sprite()
@@ -79,9 +77,7 @@ class BewareTheBalls(arcade.Window):
         if self.world.game_over :
             return self.world.timer_thread.timer
 
-
-#################### START ####################
-            
+#################### START ####################  
  
 if __name__ == '__main__':
     window = BewareTheBalls(SCREEN_WIDTH, SCREEN_HEIGHT)

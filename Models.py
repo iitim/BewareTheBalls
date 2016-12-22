@@ -10,12 +10,7 @@ class Model:
         self.x = x
         self.y = y
 
-    def hit(self, other, hit_size_width, hit_size_height, bar_dir):
-        if bar_dir == Bar.DIR_HORIZON :
-            return (abs(self.x - other.x) <= hit_size_width) and (abs(self.y - other.y) <= hit_size_height)
-        elif bar_dir == Bar.DIR_VERTICAL :
-            return (abs(self.x - other.x) <= hit_size_height) and (abs(self.y - other.y) <= hit_size_width)
-
+#################### BAR ####################
         
 class Bar(Model):
     DIR_VERTICAL = 0
@@ -24,6 +19,7 @@ class Bar(Model):
     MOVE_MORE = 1
     BAR_WIDTH = 284
     BAR_HEIGHT = 22
+    
     def __init__(self, world, major_var, direction):
         self.direction = direction
         self.major_var = major_var
@@ -57,12 +53,15 @@ class Bar(Model):
         elif move_key == Bar.MOVE_MORE :
             self.minor_var += 50
 
+    def hit(self, other, hit_size_width, hit_size_height, bar_dir):
+        if bar_dir == Bar.DIR_HORIZON :
+            return (abs(self.x - other.x) <= hit_size_width) and (abs(self.y - other.y) <= hit_size_height)
+        elif bar_dir == Bar.DIR_VERTICAL :
+            return (abs(self.x - other.x) <= hit_size_height) and (abs(self.y - other.y) <= hit_size_width)
 
-class Ball(Model):
-    DIR_LEFT = -1
-    DIR_RIGHT = 1
-    DIR_UP = 1
-    DIR_DOWN = -1
+#################### BALL ####################
+
+class Ball(Model) :
     def __init__(self, world, x, y):
         super().__init__(world, x, y)
         self.vx = randint(1, 3)
@@ -93,6 +92,7 @@ class Ball(Model):
         elif bar_dir == Bar.DIR_VERTICAL :
             self.vx *= -1
 
+#################### WORLD ####################
         
 class World:
     def __init__(self, width, height):
@@ -147,6 +147,8 @@ class World:
             self.bar[3].control(Bar.MOVE_LESS)
         elif key == arcade.key.R :
             self.bar[3].control(Bar.MOVE_MORE)
+
+#################### TIMER ####################
 
 class perpetualTimer():
    def __init__(self,t,my_timer):
