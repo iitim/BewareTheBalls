@@ -25,9 +25,10 @@ class Bar(Model):
     BAR_WIDTH = 284
     BAR_HEIGHT = 22
     def __init__(self, world, major_var, direction):
-        self.major_var = major_var
-        self.minor_var = 100
         self.direction = direction
+        self.major_var = major_var
+        self.minor_var = 500
+        
         if self.direction == Bar.DIR_VERTICAL :
             super().__init__(world, self.major_var, self.minor_var)
             self.distance = self.world.height
