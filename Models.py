@@ -97,24 +97,25 @@ class World:
     def __init__(self, width, height):
         self.width = width
         self.height = height
+        self.setup()
 
+    def setup(self) :
         self.bar_edge = 10
         self.bar = [Bar(self, self.bar_edge, Bar.DIR_HORIZON),Bar(self, self.bar_edge, Bar.DIR_VERTICAL), Bar(self, self.height - self.bar_edge, Bar.DIR_HORIZON), Bar(self, self.width - self.bar_edge, Bar.DIR_VERTICAL)]
         self.ball = [Ball(self, 400, 400)]
         self.timer_thread = perpetualTimer(1.0, 0)
         self.timer_thread.start()
         self.one_ball_gen = True
-        self.geme_over = False
+        self.game_over = False
         
     def animate(self, delta):
         self.gen_ball()
         for each_ball in self.ball :
             each_ball.animate()
             if each_ball.out :
+                del each_ball
                 self.game_over = True
-                #print("OUT!")
-                #self.ball.remove(each_ball)
-                #del each_ball
+                self.timer_thread.cancel()
         for each_bar in self.bar :
             each_bar.animate(delta)
             for each_ball in self.ball :
