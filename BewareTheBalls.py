@@ -25,7 +25,7 @@ class BewareTheBalls(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
  
-        arcade.set_background_color(arcade.color.WHITE)
+        arcade.set_background_color(arcade.color.ARTICHOKE)
         self.world = World(width, height)
         self.setup()
 
@@ -47,10 +47,10 @@ class BewareTheBalls(arcade.Window):
         if self.world.game_over :
             arcade.draw_text("You can save the balls for " + str(self.world.timer_thread.timer) + " seconds",
                                 130, self.height/2 + 30,
-                                arcade.color.BLACK, 20)
+                                arcade.color.WHITE, 20)
             arcade.draw_text("Press ENTER to restart",
                                 130, self.height/2 - 30,
-                                arcade.color.BLACK, 30)
+                                arcade.color.BONE, 30)
         else :
             for each_ball_sprite in self.ball_sprite :
                 each_ball_sprite.draw()
@@ -58,7 +58,7 @@ class BewareTheBalls(arcade.Window):
                 each_bar_sprite.draw()
             arcade.draw_text(str(self.world.timer_thread.timer),
                              self.width - 30, self.height - 30,
-                             arcade.color.RED, 20)
+                             arcade.color.BANANA_MANIA, 20)
         
     def animate(self, delta):
         if not self.world.game_over :
